@@ -39,7 +39,7 @@ columns = [
 ]
 
 try:
-    data = pd.read_csv(FILENAME)
+    data = pd.read_csv(FILENAME, index_col=False)
 except:
     data = pd.DataFrame(columns=columns)
 
@@ -109,8 +109,8 @@ for start, end in end_pts:
             first, data = scrape_comb(k, comb, data, first)
         except CaptchaGoneWrongEvent:
             print('Failed captcha')
-            data.to_csv(FILENAME)
+            data.to_csv(FILENAME, index=False)
             driver.close()
             quit()
-    data.to_csv(FILENAME)
+    data.to_csv(FILENAME, index=False)
 driver.close()
